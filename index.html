@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Ejemplo de servicio</title>
+</head>
+<body>
+  <h1>Ejemplo de servicio</h1>
+  <h2>Esta es mi primera página utilizando GitHub</h2>
+  <button onclick="ejecuta()">Dale Click!!</button>
+
+  <script>
+    async function ejecuta() {
+      try {
+        // Se conecta a servicios.php y recibe su respuesta.
+        const resp = await fetch("servicios.php"); // Asegúrate de que la ruta sea correcta
+        if (resp.ok) {
+          const texto = await resp.text(); // Obtiene la respuesta como texto
+          alert(texto); // Muestra el nombre recibido
+        } else {
+          throw new Error(resp.statusText); // Muestra un error si la respuesta no es ok
+        }
+      } catch (error) {
+        console.error(error); // Log del error
+        alert("Error: " + error.message); // Alerta con el mensaje de error
+      }
+    }
+  </script>
+</body>
+</html>
